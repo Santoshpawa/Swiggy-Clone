@@ -1,9 +1,10 @@
-
+import dotenv from "dotenv";
 import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth"
+dotenv.config();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6MdZ62XZj5qMShHWebaz6nrjWOoRVBa4",
+  apiKey: process.env.Firebase_APIKey,
   authDomain: "tweeter-message.firebaseapp.com",
   projectId: "tweeter-message",
   storageBucket: "tweeter-message.firebasestorage.app",
