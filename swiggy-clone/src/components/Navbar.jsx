@@ -8,8 +8,20 @@ import {
   LogIn,
   ShoppingCart,
 } from "lucide-react";
+import {useSelector, useDispatch} from "react-redux";
+import { logout } from "../features/auth/authSlice";
+import {useNavigate} from "react-router-dom"
 
 function Navbar() {
+  const {user} = useSelector((state)=>state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = ()=>{
+    dispatch(logout());
+    navigate('/login');
+  }
+  
+  
   return (
     <nav className="max-h-14 flex items-center border-0 shadow-2xl w-full">
       {/* for home icon which enlarge on hovering */}
@@ -45,13 +57,17 @@ function Navbar() {
           <span>Help</span>
         </div>
         <div className="flex items-center mx-6  hover:text-orange-500 cursor-pointer">
-          <LogIn></LogIn>
-          <span>Sign In</span>
-        </div>
-        <div className="flex items-center mx-6  hover:text-orange-500 cursor-pointer">
           <ShoppingCart></ShoppingCart>
           <span>Cart</span>
         </div>
+        {!user && <div className="flex items-center mx-6  hover:text-orange-500 cursor-pointer">
+          <LogIn></LogIn>
+          <span><a href="/signup">Sign Up</a></span>
+        </div>}
+        {user && <div className="flex items-center mx-6  hover:text-orange-500 cursor-pointer">
+          <button onClick={handleLogout}>Logout</button>
+        </div>}
+
       </div>
     </nav>
   );

@@ -27,11 +27,11 @@ function Login() {
     setFormError("");
     dispatch(loginUser({ email, password }));
   };
-   useEffect(() => {
-      if (user) {
-        navigate("/home");
-      }
-    }, [user]);
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
   return (
     <>
       <div className="max-w-md mx-auto my-20  border-0 shadow-2xl rounded-2xl p-6 sm:p-10 ">
